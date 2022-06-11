@@ -38,13 +38,36 @@ public class PomodoroManager : MonoBehaviour
 
     private void Start()
     {
-        tiempo = targetTime;
+        //tiempo = targetTime;
         textTiempo.GetComponent<TextMeshProUGUI>().text = "25:00";
     }
-
+    void Select25minutes()
+    {
+        Debug.Log("Entre acaaaa");
+        tiempo = targetTime;
+        
+    }
+    
+    void SelectShortBreak()
+    {
+        tiempo = shortTime;
+        
+    }
+    
+    void selectLargeBreak()
+    {
+        tiempo = largeTime;
+        
+    }
  
     void Update()
     {
+    
+        btnStart.clickable.clicked += Select25minutes;
+        btnShortBreak.clickable.clicked += SelectShortBreak;
+        btnLongBreak.clickable.clicked += selectLargeBreak;
+        
+    
         if (estado == PomodoroStates.pomodoro)
         {
             TimerController();
