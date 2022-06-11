@@ -25,6 +25,11 @@ public class PomodoroManager : MonoBehaviour
     private float seconds;
     
     public GameObject textTiempo;
+    
+    //-----------------------AUDIO------------------------
+    private AudioSource _audioSource;
+
+    //----------------------------------------------------
 
     public enum PomodoroStates {
         pausado,
@@ -38,6 +43,7 @@ public class PomodoroManager : MonoBehaviour
 
     private void Start()
     {
+        _audioSource = GetComponent<AudioSource>();
         textTiempo.GetComponent<TextMeshProUGUI>().text = "25:00";
     }
 
@@ -47,6 +53,7 @@ public class PomodoroManager : MonoBehaviour
 
         if (estado == PomodoroStates.pomodoro)
         {
+            
             TimerController();
         }
 
@@ -66,6 +73,10 @@ public class PomodoroManager : MonoBehaviour
        
             estado = PomodoroStates.pomodoro;
             tiempo = targetTime;
+           /* if (_audioSource.isPlaying)
+            {
+                _audioSource.Stop();
+            }*/
         
         
     }
@@ -74,6 +85,10 @@ public class PomodoroManager : MonoBehaviour
         
             estado = PomodoroStates.shortB;
             tiempo = shortTime;
+            /*if (_audioSource.isPlaying)
+            {
+                _audioSource.Stop();
+            }*/
        
     }
     
@@ -82,12 +97,16 @@ public class PomodoroManager : MonoBehaviour
         
             estado = PomodoroStates.longB;
             tiempo = largeTime;
+            
+           /* if (_audioSource.isPlaying)
+            {
+                _audioSource.Stop();
+            }*/
        
     }
     
     private void TimerController()
     {
-        Debug.Log("Tiempo es " + tiempo);
         if (tiempo > 0)
         {
             tiempo -= Time.deltaTime;
@@ -95,6 +114,7 @@ public class PomodoroManager : MonoBehaviour
         }
         else
         {
+            _audioSource.Play();
             tiempo = 0;
         }
         
