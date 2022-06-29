@@ -8,7 +8,6 @@ using UnityEngine.UIElements;
 
 public class PomodoroManager : MonoBehaviour
 {
-
     public Button btnStart;
     public Button btnShortBreak;
     public Button btnLongBreak;
@@ -73,36 +72,20 @@ public class PomodoroManager : MonoBehaviour
        
             estado = PomodoroStates.pomodoro;
             tiempo = targetTime;
-           /* if (_audioSource.isPlaying)
-            {
-                _audioSource.Stop();
-            }*/
-        
-        
+           
     }
     public void ShortBreak()
     {
         
             estado = PomodoroStates.shortB;
             tiempo = shortTime;
-            /*if (_audioSource.isPlaying)
-            {
-                _audioSource.Stop();
-            }*/
-       
+            
     }
     
     public void LongBreak()
     {
-        
-            estado = PomodoroStates.longB;
-            tiempo = largeTime;
-            
-           /* if (_audioSource.isPlaying)
-            {
-                _audioSource.Stop();
-            }*/
-       
+        estado = PomodoroStates.longB;
+        tiempo = largeTime;
     }
     
     private void TimerController()
